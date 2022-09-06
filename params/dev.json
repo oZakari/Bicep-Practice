@@ -109,9 +109,9 @@
                 "azureFunctionInfo": [
                     {
                         "name": "af",
-                        "asp": "apinc-dev-asp",
-                        "sa": "apincdevstrg1" ,
-                        "ai": "apinc-dev-ai"
+                        "asp": "zt-dev-asp",
+                        "sa": "ztdevstrg1" ,
+                        "ai": "zt-dev-ai"
                     }
                 ],
                 "logAnalyticsInfo": [
@@ -122,7 +122,7 @@
                 "applicationInsightsInfo": [
                     {
                         "name": "ai",
-                        "la": "apinc-dev-la"
+                        "la": "zt-dev-la"
                     }
                 ],
                 "apiManagementInfo": [
@@ -135,9 +135,9 @@
                 "customAlertInfo": [
                     {
                         "name": "ca",
-                        "af": "apinc-dev-af",
-                        "ag": "apinc-dev-ag",
-                        "ai": "apinc-dev-ai"
+                        "af": "zt-dev-af",
+                        "ag": "zt-dev-ag",
+                        "ai": "zt-dev-ai"
                     }
                 ],
                 "automationAccountInfo": [

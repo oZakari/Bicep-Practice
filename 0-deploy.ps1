@@ -4,7 +4,7 @@ Write-Warning -Message "RG is: [$rgname] in Region: [$region]"
 
 $MyParametersDeployALL = @{
     ResourceGroupName     = $rgname
-    TemplateParameterFile = ".\dev.json"
+    TemplateParameterFile = ".\params\dev.json"
     Verbose               = $true
     WhatIf                = $false
 }
