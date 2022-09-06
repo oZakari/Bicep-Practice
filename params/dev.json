@@ -140,6 +140,11 @@
                         "ai": "zt-dev-ai"
                     }
                 ],
+                "dataShareInfo": [
+                    {
+                        "name": "ds"
+                    }
+                ],
                 "automationAccountInfo": [
                     {
                         "name": "aa"
