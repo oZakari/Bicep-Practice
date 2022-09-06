@@ -1,0 +1,151 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "stage": {
+            "value": {
+                "ag": 0,
+                "sa": 0,
+                "vn": 0,
+                "nsg": 0,
+                "azsql": 0,
+                "asp": 0,
+                "af": 0,
+                "la": 0,
+                "ai": 0,
+                "am": 0,
+                "ca": 0,
+                "aa": 0
+            }
+        },
+        "Global": {
+            "value": {
+                "environment": "dev",
+                "appName": "apinc"
+            }
+        },
+        "DeploymentInfo": {
+            "value": {
+                "actionGroupInfo": [
+                    {
+                        "name": "DBA-Team",
+                        "emailReceivers": [
+                            {
+                                "name": "ag",
+                                "emailAddress": "test@testing.com",
+                                "useCommonAlertSchema": false
+                            }
+                        ],
+                        "armRoleReceivers": [
+                            {
+                                "name": "Monitoring Contributor",
+                                "roleId": "749f88d5-cbae-40b8-bcfc-e573ddc772fa",
+                                "useCommonAlertSchema": false
+                            },
+                            {
+                                "name": "Monitoring Reader",
+                                "roleId": "43d0d8ad-25c7-4714-9337-8ba259a9fe05",
+                                "useCommonAlertSchema": false
+                            }
+                        ]
+                    }
+                ],
+                "storageInfo": [
+                    {
+                        "name": "strg1",
+                        "publicAccess": false,
+                        "skuName": "Standard_LRS",
+                        "containers": [
+                            {
+                              "name": "container1"
+                            }
+                        ],
+                        "fileshares": [
+                            {
+                              "name": "fileshare1"
+                            },
+                            {
+                              "name": "fileshare2"
+                            }
+                        ],
+                        "queues": [
+                            {
+                              "name": "queue1"
+                            }
+                        ] 
+                    }
+                ],
+                "virtualNetworkInfo": [
+                    {
+                        "name": "vnet",
+                        "subnetOne": "Subnet01",
+                        "subnetTwo": "Subnet02"
+                    }
+                ],
+                "networkSecurityGroupInfo": [
+                    {
+                        "name": "nsg"
+                    }
+                ],
+                "azsqlInfo": [
+                    {
+                        "name": "azsql",
+                        "adminLogin": "SQLSA",
+                        "adminPw": "Testing1@1",
+                        "allowedips": [
+                            {
+                                "name": "Office",
+                                "startip": "10.0.0.0",
+                                "endip": "10.0.0.0"
+                            }
+                        ]
+                    }
+                ],
+                "appServicePlanInfo": [
+                    {
+                        "name": "asp"
+                    }
+                ],
+                "azureFunctionInfo": [
+                    {
+                        "name": "af",
+                        "asp": "apinc-dev-asp",
+                        "sa": "apincdevstrg1" ,
+                        "ai": "apinc-dev-ai"
+                    }
+                ],
+                "logAnalyticsInfo": [
+                    {
+                        "name": "la"
+                    }
+                ],
+                "applicationInsightsInfo": [
+                    {
+                        "name": "ai",
+                        "la": "apinc-dev-la"
+                    }
+                ],
+                "apiManagementInfo": [
+                    {
+                        "name": "am",
+                        "vn": "practice",
+                        "vnrg": "Practice"
+                    }
+                ],
+                "customAlertInfo": [
+                    {
+                        "name": "ca",
+                        "af": "apinc-dev-af",
+                        "ag": "apinc-dev-ag",
+                        "ai": "apinc-dev-ai"
+                    }
+                ],
+                "automationAccountInfo": [
+                    {
+                        "name": "aa"
+                    }
+                ]
+            }
+        }
+    }
+}
