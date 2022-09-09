@@ -4,6 +4,9 @@
         "verbose": false,
         "enabled": true,
         "rules": {
+          "no-loc-expr-outside-params": {
+            "level": "off"
+          },
           "no-unused-params": {
               "level": "off"
           },

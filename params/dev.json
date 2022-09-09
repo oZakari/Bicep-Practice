@@ -21,7 +21,7 @@
         "Global": {
             "value": {
                 "environment": "dev",
-                "appName": "apinc"
+                "appName": "zt"
             }
         },
         "DeploymentInfo": {
@@ -142,7 +142,16 @@
                 ],
                 "dataShareInfo": [
                     {
-                        "name": "ds"
+                        "name": "ds",
+                        "sqlservername": "zttest",
+                        "sender": true
+                    },
+                    {
+                        "name": "ds2",
+                        "sqlservername": "zttest",
+                        "sender": false,
+                        "sendersuffix": "ds",
+                        "resourceid": "resource"
                     }
                 ],
                 "automationAccountInfo": [
