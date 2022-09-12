@@ -61,18 +61,6 @@ resource DSSender 'Microsoft.DataShare/accounts@2021-08-01' existing = {
   }
 }
 
-// resource DSSenderMap 'Microsoft.DataShare/accounts@2021-08-01' existing = {
-//   name: toLower('${deployment}-${dataShareInfo.sendersuffix}')
-
-//   resource DSSenderShareMap 'shares' existing = {
-//     name: '${toLower('${deployment}-${dataShareInfo.sendersuffix}')}-share'
-
-//     resource DSSenderDataset 'dataSets' existing = {
-//       name: '${toLower('${deployment}-${dataShareInfo.sendersuffix}')}-dataset'
-//     }
-//   }
-// }
-
 resource ShareSubscription 'Microsoft.DataShare/accounts/shareSubscriptions@2021-08-01' = if (dataShareInfo.sender == false) {
   dependsOn: [
     Invitation
@@ -85,43 +73,48 @@ resource ShareSubscription 'Microsoft.DataShare/accounts/shareSubscriptions@2021
   }
 }
 
-resource GetDataSetGuidScript 'Microsoft.Resources/deploymentScripts@2020-10-01' = {
+param userAssignedIdentityName string = 'ACU1-BRW-AOA-T5-uaiStorageKeyRotation'
+
+resource GetDataSetGuidScript 'Microsoft.Resources/deploymentScripts@2020-10-01' = if (dataShareInfo.sender == false) {
   dependsOn: [
     ShareSubscription
   ]
   name: '${toLower('${deployment}-${dataShareInfo.name}')}-getdatasetid'
   location: resourceGroup().location
   kind: 'AzurePowerShell'
+  identity: {
+    type: 'UserAssigned'
+    userAssignedIdentities: {
+      '${resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', userAssignedIdentityName)}': {}
+    }
+  }
   properties: {
-    azPowerShellVersion: 'latest'
+    azPowerShellVersion: '8.2'
     timeout: 'PT1H'
     arguments: ''
     scriptContent: '''
-      (Get-AzDataShareSourceDataSet -ResourceGroupName "zt-dev-bicep" -AccountName "zt-dev-ds2" -ShareSubscriptionName "zt-dev-ds2-sharesub").DataSetId
+      $output = (Get-AzDataShareSourceDataSet -ResourceGroupName "zt-dev-bicep" -AccountName "zt-dev-ds2" -ShareSubscriptionName "zt-dev-ds2-sharesub") | select -expand DataSetId
+      Write-Output $output
+      $DeploymentScriptOutputs = @{}
+      $DeploymentScriptOutputs["text"] = $output
     '''
     cleanupPreference: 'Always'
     retentionInterval: 'P1D'
   }
 }
 
-output output string = GetDataSetGuidScript.properties.outputs.text
+output result string = dataShareInfo.sender == false ?  GetDataSetGuidScript.properties.outputs.text : ''
 
 resource DataSetMapping 'Microsoft.DataShare/accounts/shareSubscriptions/dataSetMappings@2021-08-01' = if (dataShareInfo.sender == false)  {
-  dependsOn: [
-    GetDataSetGuidScript
-  ]
   parent: ShareSubscription
   name: '${toLower('${deployment}-${dataShareInfo.name}')}-mapping'
   kind: 'SqlDBTable'
   properties: {
     databaseName: 'zttest'
     schemaName: 'dbo'
-    dataSetId: GetDataSetGuidScript.properties.outputs.text
+    dataSetId: dataShareInfo.sender == false ? GetDataSetGuidScript.properties.outputs.text : ''
     sqlServerResourceId: SQLServer.id
     tableName: 'myTable'
   }
 }
-
-
-
 
