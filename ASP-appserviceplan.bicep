@@ -3,7 +3,7 @@ param global object
 
 var deployment = '${global.appName}-${global.environment}'
 
-resource ASP 'Microsoft.Web/serverfarms@2021-03-01' = {
+resource ASP 'Microsoft.Web/serverfarms@2022-09-01' = {
   name: toLower('${deployment}-${appServicePlanInfo.name}')
   location: resourceGroup().location
   sku: {

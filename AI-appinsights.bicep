@@ -3,7 +3,7 @@ param global object
 
 var deployment = '${global.appName}-${global.environment}'
 
-resource LA 'Microsoft.OperationalInsights/workspaces@2021-06-01' existing = {
+resource LA 'Microsoft.OperationalInsights/workspaces@2022-10-01' existing = {
   name: applicationInsightsInfo.la
 }
 

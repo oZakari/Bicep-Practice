@@ -3,13 +3,13 @@ param global object
 
 var deployment = '${global.appName}-${global.environment}'
 
-resource SQLServer 'Microsoft.Sql/servers@2022-02-01-preview' existing = {
+resource SQLServer 'Microsoft.Sql/servers@2021-11-01' existing = {
   name: dataShareInfo.sqlservername
   scope: resourceGroup('Practice')
 
 }
 
-resource DS 'Microsoft.DataShare/accounts@2021-08-01' = {
+resource DS 'Microsoft.DataShare/accounts@2021-08-01'= {
   name: toLower('${deployment}-${dataShareInfo.name}')
   location: resourceGroup().location
   identity: {

@@ -8,7 +8,7 @@ resource VN 'Microsoft.Network/virtualNetworks@2021-08-01' existing = {
   scope: resourceGroup(apiManagementInfo.vnrg)
 }
 
-resource AM 'Microsoft.ApiManagement/service@2021-12-01-preview' = {
+resource AM 'Microsoft.ApiManagement/service@2022-08-01' = {
   name: toLower('${deployment}-${apiManagementInfo.name}')
   location: resourceGroup().location
   sku: {

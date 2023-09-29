@@ -43,7 +43,7 @@ resource SA 'Microsoft.Storage/storageAccounts@2021-06-01' = {
   }
 }
 
-resource SABlobService 'Microsoft.Storage/storageAccounts/blobServices@2021-09-01' = {
+resource SABlobService 'Microsoft.Storage/storageAccounts/blobServices@2023-01-01' = {
   name: '${toLower('${deployment}${storageInfo.name}')}/default'
   properties: {
     isVersioningEnabled: (contains(storageInfo, 'blobVersioning') ? storageInfo.blobVersioning : bool('false'))
@@ -57,17 +57,17 @@ resource SABlobService 'Microsoft.Storage/storageAccounts/blobServices@2021-09-0
   ]
 }
 
-resource SAFileService 'Microsoft.Storage/storageAccounts/fileServices@2021-04-01' = {
+resource SAFileService 'Microsoft.Storage/storageAccounts/fileServices@2023-01-01' = {
   name: 'default'
   parent: SA
 }
 
-resource SAQueueService 'Microsoft.Storage/storageAccounts/queueServices@2021-04-01' = {
+resource SAQueueService 'Microsoft.Storage/storageAccounts/queueServices@2023-01-01' = {
   name: 'default'
   parent: SA
 }
 
-resource SATableService 'Microsoft.Storage/storageAccounts/tableServices@2021-04-01' = {
+resource SATableService 'Microsoft.Storage/storageAccounts/tableServices@2023-01-01' = {
   name: 'default'
   parent: SA
 }

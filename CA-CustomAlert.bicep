@@ -3,19 +3,19 @@ param global object
 
 var deployment = '${global.appName}-${global.environment}'
 
-resource AF 'Microsoft.Web/sites@2021-03-01' existing = {
+resource AF 'Microsoft.Web/sites@2022-09-01' existing = {
     name: customAlertInfo.af
 }
 
-resource AG 'microsoft.insights/actionGroups@2019-06-01' existing = {
+resource AG 'Microsoft.Insights/actionGroups@2023-01-01' existing = {
     name: customAlertInfo.ag
 }
 
-resource AI 'microsoft.Insights/components@2020-02-02' existing = {
+resource AI 'Microsoft.Insights/components@2020-02-02' existing = {
     name: customAlertInfo.ai
 }
 
-resource CA 'microsoft.insights/scheduledqueryrules@2021-02-01-preview' = {
+resource CA 'Microsoft.Insights/scheduledQueryRules@2022-06-15' = {
   name: toLower('${deployment}-${customAlertInfo.name}')
   location: resourceGroup().location
   properties: {

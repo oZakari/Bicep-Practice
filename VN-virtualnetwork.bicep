@@ -3,7 +3,7 @@ param global object
 
 var deployment = '${global.appName}-${global.environment}'
 
-resource VN 'Microsoft.Network/virtualNetworks@2021-08-01' = {
+resource VN 'Microsoft.Network/virtualNetworks@2023-05-01' = {
   name: toLower('${deployment}-${virtualNetworkInfo.name}')
   location: resourceGroup().location
   properties: {

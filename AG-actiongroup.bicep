@@ -1,9 +1,9 @@
-param actionGroupInfo object 
+param actionGroupInfo object
 param global object
 
 var deployment = '${global.appName}-${global.environment}'
 
-resource AG 'microsoft.insights/actionGroups@2019-06-01' = {
+resource AG 'Microsoft.Insights/actionGroups@2023-01-01' = {
   name: toLower('${deployment}-${actionGroupInfo.name}')
   location: 'Global'
   properties: {

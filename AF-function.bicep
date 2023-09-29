@@ -3,7 +3,7 @@ param global object
 
 var deployment = '${global.appName}-${global.environment}'
 
-resource ASP 'Microsoft.Web/serverfarms@2021-03-01' existing = {
+resource ASP 'Microsoft.Web/serverfarms@2022-09-01' existing = {
   name: azureFunctionInfo.asp
 }
 
@@ -11,7 +11,7 @@ resource AI 'Microsoft.Insights/components@2020-02-02' existing = {
   name: azureFunctionInfo.ai
 }
 
-resource SA 'Microsoft.Storage/storageAccounts@2021-06-01' existing = {
+resource SA 'Microsoft.Storage/storageAccounts@2023-01-01' existing = {
   name: azureFunctionInfo.sa
 }
 
@@ -49,7 +49,7 @@ resource AF 'Microsoft.Web/sites@2021-02-01' = {
         }
         {
           name: 'FUNCTIONS_WORKER_RUNTIME'
-          value: 'custom' 
+          value: 'custom'
         }
       ]
       numberOfWorkers: 1

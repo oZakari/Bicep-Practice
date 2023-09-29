@@ -1,11 +1,11 @@
 param SAName string
 param fileshare object
 
-resource SAFileService 'Microsoft.Storage/storageAccounts/fileServices@2021-06-01' existing = {
+resource SAFileService 'Microsoft.Storage/storageAccounts/fileServices@2023-01-01' existing = {
   name: '${SAName}/default'
 }
 
-resource SAFileshare 'Microsoft.Storage/storageAccounts/fileServices/shares@2021-09-01' = {
+resource SAFileshare 'Microsoft.Storage/storageAccounts/fileServices/shares@2023-01-01' = {
   name: toLower('${fileshare.name}')
   parent: SAFileService
   properties: {
